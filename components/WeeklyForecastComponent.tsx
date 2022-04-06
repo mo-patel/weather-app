@@ -7,12 +7,12 @@ interface WeeklyForecastComponentProps {
 
 export const WeeklyForecastComponent: FC<WeeklyForecastComponentProps> = () => {
     return (
-        <div className="bg-card-blue flex flex-col justify-center m-5 p-1">
+        <div className="bg-card-blue flex flex-col justify-center m-4 p-1">
             <p className="self-center">Wed </p>
-            <Image src="/images/hail.png" className="max-w-50 max-h-40" height={50} width={40} objectFit="contain" alt="hail" />
-            <div className="flex flex-row justify-around">
+            <Image src="/images/hail.png" className="max-w-55 max-h-60" height={55} width={60} objectFit="contain" alt="hail" />
+            <div className="flex flex-row justify-between">
                 <p>16°C</p>
-                <p>11°C</p>
+                <p className="text-[#A09FB1]">11°C</p>
             </div>
         </div>
     );
