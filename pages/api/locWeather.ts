@@ -1,13 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { LocationResult, RequestError } from '../../types/Weather'
-const LONDON_WOEID = 44418;
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<LocationResult | RequestError>
 ) {
     try{
-        const result = await fetch('https://www.metaweather.com/api/' + 'location/' + LONDON_WOEID + '/');
+        const { woe } = req.query;
+        const result = await fetch('https://www.metaweather.com/api/' + 'location/' + woe);
         if(result.ok){
             res.status(result.status).json(await result.json());
         }

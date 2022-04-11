@@ -31,7 +31,7 @@ export interface LocationDetail {
     title: string;
     location_type: string;
     latt_long: string;
-    woeid: string;
+    woeid: number;
 }
 
 export interface RequestError {

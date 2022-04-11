@@ -6,8 +6,8 @@ export default async function handler(
   res: NextApiResponse<LocationDetail[] | RequestError>
 ) {
   try{
-    const { searchTerm } = req.query;
-    const locationReq = await fetch('https://www.metaweather.com/api/' + 'search/?query=' + searchTerm);
+    const { term } = req.query;
+    const locationReq = await fetch('https://www.metaweather.com/api/' + 'location/search/?query=' + term);
     if(locationReq.ok){
         return res.status(locationReq.status).json(await locationReq.json())
     }
