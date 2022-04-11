@@ -2,14 +2,14 @@ import { FC } from "react";
 import { BiCurrentLocation } from 'react-icons/bi';
 
 interface TopBarComponentProps {
-
+    toggleMenu: () => void;
 }
 
-export const TopBarComponent: FC<TopBarComponentProps> = () => {
+export const TopBarComponent: FC<TopBarComponentProps> = ({toggleMenu}) => {
     return (
         <div className="flex flex-row absolute top-0 w-full">
             <div className="flex w-full md:w-[33%] justify-between">
-                <button className="p-2 m-2 text-sm bg-tx-grey">Search Location</button>
+                <button onClick={() => toggleMenu()} className="p-2 m-2 text-sm bg-tx-grey">Search Location</button>
                 <BiCurrentLocation className="p-1 m-3 text-4xl bg-tx-grey rounded-full" />
             </div>
             <div className="hidden md:flex w-[67%] justify-end">

@@ -14,7 +14,7 @@ export const LargeWeatherComponent: FC<LargeWeatherComponentProps> = () => {
         <div className="flex flex-col bg-card-blue h-full pt-14">
             <div className="relative">
                 <div className="absolute top-0 bottom-0 right-0 -left-8 opacity-10 bg-[url('/images/CloudBg.png')] bg-cover bg-no-repeat"></div>
-                <div className="relative z-10 self-center w-full flex justify-center">
+                <div className="relative z-3 self-center w-full flex justify-center">
                     <Image src="/images/LightRain.png" alt="LightRain" width={202} height={234}  />
                 </div>
             </div>
