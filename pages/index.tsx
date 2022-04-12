@@ -46,7 +46,7 @@ const Home: NextPage = () => {
           <div className='flex flex-flow flex-wrap'>
             {currentLocData.consolidated_weather.map((item, idx )=> 
             <WeeklyForecastComponent key={idx} wDate={item.applicable_date}
-            minTemp={item.min_temp} theTemp={item.the_temp} />)}
+            minTemp={item.min_temp} theTemp={item.the_temp} weatherAbbr={item.weather_state_abbr} />)}
           </div>
 
           <div className='col-start-2 col-span-2 p-5'>
