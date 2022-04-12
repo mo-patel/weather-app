@@ -32,7 +32,7 @@ export const SearchComponent: FC<SearchComponentProps> = ({show, closeMenu, setS
             <div>
                 {
                     searchResults?.map((item, idx) => (
-                        <SearchOptionComponent id={item.woeid} key={idx} selectLocation={setSelectedLoc} />
+                        <SearchOptionComponent id={item.woeid} key={idx} name={item.title} selectLocation={setSelectedLoc} />
                     ))
                 }
             </div>

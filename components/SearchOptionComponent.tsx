@@ -3,14 +3,15 @@ import { FiChevronRight } from 'react-icons/fi';
 
 interface SearchOptionComponentProps {
     id: number;
+    name: string;
     selectLocation: (woeId: number) => void;
 }
 
-export const SearchOptionComponent: FC<SearchOptionComponentProps> = ({ id, selectLocation }) => {
+export const SearchOptionComponent: FC<SearchOptionComponentProps> = ({ id, name, selectLocation }) => {
     return (
-        <div className="w-full p-4 mt-4"  onClick={()=> selectLocation(id)}>
+        <div className="w-full p-4 mt-4 cursor-pointer"  onClick={()=> selectLocation(id)}>
             <div className="flex flex-row justify-between">
-                Preston 
+                {name} 
                 <FiChevronRight className="self-center text-lg" />
             </div>
         </div>

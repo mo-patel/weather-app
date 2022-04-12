@@ -12,7 +12,7 @@ export interface LocationResult {
 
 export interface Forecast {
     id: number;
-    applicable_date: Date;
+    applicable_date: string;
     weather_state_name: string;
     weather_state_abbr: string;
     wind_speed: number;
