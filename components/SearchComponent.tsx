@@ -14,7 +14,7 @@ export const SearchComponent: FC<SearchComponentProps> = ({show, closeMenu, setS
     const [searchTerm, setSearchTerm] = useState<string>("");
     const submitHandler = async (event: FormEvent) => {
         event.preventDefault();
-        const searchReq = await fetch("/api/search?term=" + searchTerm);
+        const searchReq: Response = await fetch("/api/search?term=" + searchTerm);
         if(searchReq.ok){
             setSearchResults(await searchReq.json());
         }

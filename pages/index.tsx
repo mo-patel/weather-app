@@ -5,7 +5,7 @@ import { LargeWeatherComponent } from '../components/LargeWeatherComponent'
 import { SearchComponent } from '../components/SearchComponent'
 import { TopBarComponent } from '../components/TopBarComponent'
 import { WeeklyForecastComponent } from '../components/WeeklyForecastComponent'
-import { LocationResult, RequestError } from '../types/Weather'
+import { LocationDetail, LocationResult, RequestError } from '../types/Weather'
 import smp from "../sampleData/sampleWeatherRes.json";
 
 const Home: NextPage = () => {
@@ -13,6 +13,7 @@ const Home: NextPage = () => {
   const [currentLocData, setCurrentLocData] = useState<LocationResult>(smp);
   const [locationId, setLocationId] = useState<number>(44418); //default london
   const [isFarenheight, setIsFarenheight] = useState<boolean>(false);
+  const [userLocLoading, setUserLocLoading] = useState<boolean>(false);
   const toggleMenu = () => {setShowMenu(!showMenu)};
   const getLocationData =  useCallback( async () => {
     const locData = await fetch("/api/locWeather?woe=" + locationId);
@@ -25,13 +26,40 @@ const Home: NextPage = () => {
     getLocationData();
   }, [getLocationData])
   
-  const setSelectedLocation = (location: number) => {
+  const setSelectedLocation = (location: number): void => {
     setLocationId(location);
     toggleMenu();
   }
 
-  const setTempType = (code: 'F' | 'C') => {
+  const setTempType = (code: 'F' | 'C'): void => {
     setIsFarenheight(code === 'F')
+  }
+
+  const getUserLocation = (): void => {
+    if (window.navigator.geolocation) {
+      setUserLocLoading(true);
+      window.navigator.geolocation
+      .getCurrentPosition((pos) => performLatLongSearch(pos.coords.latitude, pos.coords.longitude),
+      ()=>{
+        alert('Failed to retrieve location data')
+        setUserLocLoading(false)
+      })
+    } 
+  }
+
+  const performLatLongSearch = async (lat: number, long: number): Promise<boolean> => {
+    const lattlongReq: Response = await fetch(`/api/search?lattlong=${lat},${long}`);
+    if(lattlongReq.ok){
+      const nearest: LocationDetail[] = await lattlongReq.json();
+      if(nearest.length > 0){
+        setLocationId(nearest[0].woeid);
+        setUserLocLoading(false)
+        return true;
+      }
+    }
+    alert('Failed to retrieve location data');
+    setUserLocLoading(false);
+    return false;
   }
 
   if(!currentLocData){
@@ -39,7 +67,8 @@ const Home: NextPage = () => {
   }
   return (
     <>
-      <TopBarComponent toggleMenu={toggleMenu} toggleTemp={setTempType} />
+      <TopBarComponent toggleMenu={toggleMenu} toggleTemp={setTempType} getUserLocation={getUserLocation}
+       userLocLoading={userLocLoading} />
       <SearchComponent setSelectedLoc={setSelectedLocation} show={showMenu} closeMenu={toggleMenu} />
       {showMenu ? <div className='w-screen h-screen fixed backdrop-blur-sm z-10'></div> : null}
       <div className='flex flex-col md:flex-row items-center w-full h-screen'>
