@@ -17,8 +17,8 @@ export const WeeklyForecastComponent: FC<WeeklyForecastComponentProps> = ({wDate
             <p className="self-center">{format(new Date(wDate), 'ccc co LLL')}</p>
             <Image src={`/images/${weatherAbbr}.png`} className="max-w-55 max-h-60" height={55} width={60} objectFit="contain" alt="hail" />
             <div className="flex flex-row justify-between">
-                <p>{farenheight ? convertToFar(theTemp).toFixed(0) : theTemp.toFixed(0) }°{farenheight ? 'C' : 'F'}</p>
-                <p className="text-[#A09FB1]">{farenheight ? convertToFar(minTemp).toFixed(0) : minTemp.toFixed(0)}°{farenheight ? 'C' : 'F' }</p>
+                <p>{farenheight ? convertToFar(theTemp).toFixed(0) : theTemp.toFixed(0) }°{farenheight ? 'F' : 'C'}</p>
+                <p className="text-[#A09FB1]">{farenheight ? convertToFar(minTemp).toFixed(0) : minTemp.toFixed(0)}°{farenheight ? 'F' : 'C' }</p>
             </div>
         </div>
     );
