@@ -12,7 +12,7 @@ interface SearchComponentProps {
 export const SearchComponent: FC<SearchComponentProps> = ({show, closeMenu, setSelectedLoc}) => {
     const [searchResults, setSearchResults] = useState<LocationDetail[]>();
     const [searchTerm, setSearchTerm] = useState<string>("");
-    const submitHandler = async (event: FormEvent) => {
+    const submitHandler = async (event: FormEvent): Promise<void> => {
         event.preventDefault();
         const searchReq: Response = await fetch("/api/search?term=" + searchTerm);
         if(searchReq.ok){

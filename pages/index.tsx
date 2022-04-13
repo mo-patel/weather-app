@@ -9,7 +9,7 @@ import { LocationDetail, LocationResult, RequestError } from '../types/Weather'
 import smp from "../sampleData/sampleWeatherRes.json";
 
 const Home: NextPage = () => {
-  const [showMenu, setShowMenu] = useState(false);
+  const [showMenu, setShowMenu] = useState<boolean>(false);
   const [currentLocData, setCurrentLocData] = useState<LocationResult>(smp);
   const [locationId, setLocationId] = useState<number>(44418); //default london
   const [isFarenheight, setIsFarenheight] = useState<boolean>(false);
