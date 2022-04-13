@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   try{
     const { term, lattlong } = req.query;
-    const locationReq = await fetch('https://www.metaweather.com/api/' + `location/search/?${lattlong ? `lattlong=${lattlong}` : `query=${term}`}`);
+    const locationReq = await fetch(process.env.NEXT_PUBLIC_WEATHERDATA_APIURL + `location/search/?${lattlong ? `lattlong=${lattlong}` : `query=${term}`}`);
     if(locationReq.ok){
       return res.status(locationReq.status).json(await locationReq.json())
     }

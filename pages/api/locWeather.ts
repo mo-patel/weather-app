@@ -7,7 +7,7 @@ export default async function handler(
 ) {
     try{
         const { woe } = req.query;
-        const result = await fetch('https://www.metaweather.com/api/' + 'location/' + woe);
+        const result = await fetch(process.env.NEXT_PUBLIC_WEATHERDATA_APIURL + 'location/' + woe);
         if(result.ok){
             return res.status(result.status).json(await result.json());
         }
