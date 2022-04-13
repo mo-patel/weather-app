@@ -9,7 +9,7 @@ export default async function handler(
     const { term, lattlong } = req.query;
     const locationReq = await fetch('https://www.metaweather.com/api/' + `location/search/?${lattlong ? `lattlong=${lattlong}` : `query=${term}`}`);
     if(locationReq.ok){
-        return res.status(locationReq.status).json(await locationReq.json())
+      return res.status(locationReq.status).json(await locationReq.json())
     }
     throw new Error(locationReq.statusText);
   }catch(e: any){

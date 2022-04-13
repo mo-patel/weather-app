@@ -9,7 +9,7 @@ export default async function handler(
         const { woe } = req.query;
         const result = await fetch('https://www.metaweather.com/api/' + 'location/' + woe);
         if(result.ok){
-            res.status(result.status).json(await result.json());
+            return res.status(result.status).json(await result.json());
         }
         throw new Error(result.statusText);
     }catch(e: any){

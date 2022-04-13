@@ -12,15 +12,15 @@ interface LargeWeatherComponentProps {
 }
 export const LargeWeatherComponent: FC<LargeWeatherComponentProps> = ({today, location, farenheight}) => {
     return (
-        <div className="flex flex-col bg-card-blue h-full pt-14">
-            <div className="relative">
+        <div className="flex flex-col bg-card-blue h-full">
+            <div className="relative mt-12">
                 <div className="absolute top-0 bottom-0 right-0 -left-8 opacity-10 bg-[url('/images/CloudBg.png')] bg-cover bg-no-repeat"></div>
-                <div className="relative z-3 self-center w-full flex justify-center">
-                    <Image src={`/images/${today.weather_state_abbr}.png`} alt="LightRain" width={202} height={234}  />
+                <div className="relative z-3 w-full flex justify-center">
+                    <Image className="self-center" src={`/images/${today.weather_state_abbr}.png`} alt="LightRain" width={172} height={204}  />
                 </div>
             </div>
             <div className="items-center text-center">
-            <p className="font-raleway p-16">
+            <p className="font-raleway p-12">
                 <span className="text-8xl font-medium">{farenheight ? convertToFar(today.the_temp).toFixed(0) : today.the_temp.toFixed(0) }</span>
                 <span className="font-thin text-tx-grey text-2xl">°{farenheight ? 'F' : 'C'}</span>
                 </p>
